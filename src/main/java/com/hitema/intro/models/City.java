@@ -1,5 +1,6 @@
 package com.hitema.intro.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -19,8 +20,10 @@ public class City {
     @Column(name="last_update")
     private LocalDateTime lastUpdate;
 
-    @Column(name="country_id")
-    private Long countryId;
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    @JsonBackReference
+    private Country country;
 
     public Long getId() {
         return id;
@@ -42,15 +45,15 @@ public class City {
         return lastUpdate;
     }
 
-    public void setLastUpdate(LocalDateTime lastUpdate) {
+    public void setLastUpdate(LocalDateTime now) {
         this.lastUpdate = lastUpdate;
     }
 
-    public Long getCountryId() {
-        return countryId;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountryId(Long countryId) {
-        this.countryId = countryId;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

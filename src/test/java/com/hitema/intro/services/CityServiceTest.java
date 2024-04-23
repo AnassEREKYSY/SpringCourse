@@ -1,14 +1,18 @@
 package com.hitema.intro.services;
 
+import com.hitema.intro.models.City;
+import com.hitema.intro.models.Country;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.function.Supplier;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class CityServiceTest {
@@ -20,6 +24,15 @@ class CityServiceTest {
 
     @Test
     void create() {
+        City city = new City();
+        city.setCountry(new Country());
+        city.setCity("Bracknell");
+        city.setLastUpdate(java.time.LocalDateTime.now());
+
+        City createdCity=cityService.create(city);
+        assertNotNull(createdCity, "The created city should not be null");
+        boolean deletedCity=cityService.delete(createdCity.getId());
+        assertTrue(deletedCity);
     }
 
     @Test

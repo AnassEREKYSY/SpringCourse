@@ -3,10 +3,7 @@ package com.hitema.intro.controllers;
 import com.hitema.intro.models.Country;
 import com.hitema.intro.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,20 @@ public class CountryController {
     @GetMapping("/country/{id}")
     public Country read(@PathVariable long id){
         return countryService.read(id);
+    }
+
+    @DeleteMapping("/country/delete/{id}")
+    public boolean delete(@PathVariable long id){
+        return countryService.delete(id);
+    }
+
+    @PostMapping("/country/create")
+    public Country create(@RequestBody Country country){
+        return countryService.create(country);
+    }
+
+    @PutMapping("/country/update")
+    public Country update(@RequestBody Country country){
+        return countryService.update(country);
     }
 }

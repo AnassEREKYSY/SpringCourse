@@ -1,9 +1,11 @@
 package com.hitema.intro.models;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
     @Table(name="country")
@@ -19,6 +21,18 @@ public class Country {
 
         @Column(name="last_update")
         private LocalDateTime lastUpdate;
+
+        @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+        @JsonManagedReference
+        private List<City> cities;
+
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<City> cities) {
+        this.cities = cities;
+    }
 
     public long getId() {
         return id;

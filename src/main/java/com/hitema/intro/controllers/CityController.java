@@ -1,12 +1,10 @@
 package com.hitema.intro.controllers;
 
 import com.hitema.intro.models.City;
+import com.hitema.intro.models.Country;
 import com.hitema.intro.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +27,20 @@ public class CityController {
     @GetMapping("/city/{id}")
     public City read(@PathVariable long id){
         return cityService.read(id);
+    }
+
+    @PostMapping("/city/create")
+    public City create(@RequestBody City city){
+        return cityService.create(city);
+    }
+
+    @DeleteMapping("/city/delete/{id}")
+    public boolean delete(@PathVariable long id){
+        return cityService.delete(id);
+    }
+
+    @PutMapping("/city/update")
+    public City update(@RequestBody City city){
+        return cityService.update(city);
     }
 }
