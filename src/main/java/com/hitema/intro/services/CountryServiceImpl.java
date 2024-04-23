@@ -17,27 +17,27 @@ public class CountryServiceImpl implements CountryService{
 
     @Override
     public Country create(Country country) {
-        return countryRepository.save(country);
+        return this.countryRepository.save(country);
     }
 
     @Override
     public Country update(Country country) {
-        return countryRepository.save(country);
+        return this.countryRepository.save(country);
     }
 
     @Override
     public boolean delete(long id) {
-        countryRepository.deleteById(id);
+        this.countryRepository.deleteById(id);
         return (read(id)==null);
     }
 
     @Override
     public Country read(long id) {
-        return countryRepository.findById(id).orElse(null);
+        return this.countryRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Country> readAll() {
-        return countryRepository.findAll();
+        return this.countryRepository.findAll();
     }
 }
