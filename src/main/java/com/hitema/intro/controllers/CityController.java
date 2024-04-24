@@ -43,4 +43,14 @@ public class CityController {
     public City update(@RequestBody City city){
         return cityService.update(city);
     }
+
+    @GetMapping("/city/name/{expr}")
+    List<City> getAllByName(@PathVariable String  expr){
+        return cityService.readAllByName(expr);
+    }
+
+    @GetMapping("/city/capitals")
+    List<City> getAllCapitals(){
+        return cityService.readAllCapitals();
+    }
 }

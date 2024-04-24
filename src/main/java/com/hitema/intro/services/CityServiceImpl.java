@@ -40,4 +40,14 @@ public class CityServiceImpl implements CityService{
     public List<City> readAll() {
         return this.cityRepository.findAll();
     }
+
+    @Override
+    public List<City> readAllByName(String expr) {
+        return cityRepository.findCitiesByNameContaining(expr);
+    }
+
+    @Override
+    public List<City> readAllCapitals() {
+        return cityRepository.findCitiesByCapitalTrue();
+    }
 }

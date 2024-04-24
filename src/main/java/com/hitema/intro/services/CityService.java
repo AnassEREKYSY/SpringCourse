@@ -10,4 +10,6 @@ public interface CityService {
     public boolean delete(long id);
     public City read(long id);
     public List<City> readAll();
+    List<City> readAllByName(String expr);
+    List<City> readAllCapitals();
 }

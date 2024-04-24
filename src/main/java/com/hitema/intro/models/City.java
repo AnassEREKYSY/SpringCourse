@@ -20,6 +20,9 @@ public class City {
     @Column(name="last_update")
     private LocalDateTime lastUpdate;
 
+    @Column(name="capital")
+    private boolean capital;
+
     @ManyToOne
     @JoinColumn(name = "country_id")
     @JsonBackReference
